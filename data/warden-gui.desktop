@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Warden
+GenericName=Backup Tool
+Comment=Guardian of your files — local and Google Drive backup
+Comment[pt]=Guardião dos teus ficheiros — backup local e Google Drive
+Exec=warden-gui
+Icon=warden
+Terminal=false
+Categories=System;Archiving;Backup;Utility;
+Keywords=backup;rsync;rclone;drive;
+StartupNotify=true

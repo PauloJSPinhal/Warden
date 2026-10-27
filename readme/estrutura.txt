@@ -1,0 +1,46 @@
+zbackup/
+├── pyproject.toml              # metadata + entry points
+├── README.md
+├── zbackup/                    # pacote Python
+│   ├── __init__.py
+│   ├── core/                   # SEM GTK — pode correr headless
+│   │   ├── __init__.py
+│   │   ├── config.py           # carregar/guardar JSON, schema, validação
+│   │   ├── jobs.py             # descobrir jobs em jobs.d/, ativar/desativar
+│   │   ├── backup.py           # orquestrar backup (chama rsync/rclone)
+│   │   ├── rsync_backend.py    # modo espelho, snapshots, arquivo
+│   │   ├── rclone_backend.py   # modo espelho, snapshots (--backup-dir)
+│   │   ├── retention.py        # GFS, últimos N, sem limite
+│   │   ├── locks.py            # flock por destino
+│   │   ├── mounts.py           # findmnt, verificação de mount
+│   │   ├── log.py              # logger com rotação nativa Python
+│   │   ├── history.py          # history.json, state.json
+│   │   ├── notify.py           # Telegram via urllib
+│   │   └── systemd.py          # gerar .service/.timer, daemon-reload
+│   ├── cli/
+│   │   ├── __init__.py
+│   │   └── __main__.py         # zbackup list/run/status/restore/install-timers
+│   └── gui/
+│       ├── __init__.py
+│       ├── main.py             # ZBackupApp (Gtk.Window principal, layout A/B/C)
+│       ├── css.py              # CSS_ESCURO, CSS_CLARO, aplicar_estilo()
+│       ├── dialogs.py          # DialogoDestino, DialogoSettings, DialogoAbout
+│       ├── widgets.py          # componentes reutilizáveis (StatusBar, etc.)
+│       └── resources/          # ícones, glade (se usar)
+├── data/
+│   ├── zbackup-gui.desktop     # para menu de aplicações
+│   └── icons/
+└── scripts/
+    └── install.sh              # symlink para /usr/local/bin, instala deps
+    
+    
+    
+Pacote Python:   warden/
+CLI:             warden         (warden list / run / status / restore)
+GUI:             warden-gui
+Config:          ~/.config/warden/
+                   ├── config.json
+                   └── jobs.d/<nome>.json
+Logs:            ~/.local/share/warden/logs/
+Systemd:         ~/.config/systemd/user/warden-<job>.{service,timer}
+Ícone/menu:      warden-gui.desktop    

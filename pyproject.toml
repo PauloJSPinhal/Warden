@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "warden"
+version = "0.1.0"
+description = "Guardian of your files — local and Google Drive backup for Debian"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Warden Contributors" },
+]
+keywords = ["backup", "rsync", "rclone", "google-drive", "gtk", "debian"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Archiving :: Backup",
+]
+
+[project.scripts]
+warden = "warden.cli.__main__:main"
+warden-gui = "warden.gui.main:main"
+
+[project.urls]
+Homepage = "https://github.com/warden-backup/warden"
+Documentation = "https://github.com/warden-backup/warden#readme"
+Issues = "https://github.com/warden-backup/warden/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["warden*"]
+
+[tool.setuptools.package-data]
+"warden.gui" = ["resources/*.css", "resources/*.ui"]
